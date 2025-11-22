@@ -1,35 +1,39 @@
-import React, { useState } from 'react';
-import Checkbox from '../../shared/Checkbox';
+import React from 'react';
+import SelectableCard from '../../shared/SelectableCard';
 
-function Features({ features, selectedFeatures = [], onFeatureChange }) {
-  const [currentFeatures, setCurrentFeatures] = useState(selectedFeatures)
+function Features({ features = [], selectedFeatures = [], onFeatureChange }) {
+  const handleToggle = (feature) => {
+    const newSelection = selectedFeatures.includes(feature)
+      ? selectedFeatures.filter((f) => f !== feature)
+      : [...selectedFeatures, feature];
 
-  const handleFeatureChange = (feature) => {
-    const updatedFeatures = currentFeatures.includes(feature)
-      ? currentFeatures.filter((pref) => pref !== feature)
-      : [...currentFeatures, feature];
-
-    setCurrentFeatures(updatedFeatures);
-    onFeatureChange(updatedFeatures);
+    onFeatureChange(newSelection);
   };
 
   return (
-    <div className="mb-4">
-      <h2 className="text-lg font-bold mb-2">Funcionalidades:</h2>
-      <ul>
-        {features.map((feature, index) => (
-          <li key={index} className="mb-2">
-            <Checkbox
-              value={feature}
-              checked={currentFeatures.includes(feature)}
-              onChange={() => handleFeatureChange(feature)}
-              className="text-green-500"
-            >
-              {feature}
-            </Checkbox>
-          </li>
+    <div className="mb-8 pt-6 border-t border-gray-100">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+          <span className="bg-purple-100 text-purple-600 p-1.5 rounded-lg text-sm">
+            2
+          </span>
+          Funcionalidades
+        </h2>
+        <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">
+          {selectedFeatures.length} selecionadas
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 gap-3">
+        {features.map((feature) => (
+          <SelectableCard
+            key={feature}
+            label={feature}
+            isSelected={selectedFeatures.includes(feature)}
+            onClick={() => handleToggle(feature)}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
