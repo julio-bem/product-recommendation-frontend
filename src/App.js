@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import Form from './components/Form/Form';
 import RecommendationList from './components/RecommendationList/RecommendationList';
 
@@ -70,6 +71,8 @@ function App() {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }
