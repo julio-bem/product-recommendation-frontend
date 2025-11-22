@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# 🎨 Frontend - Recomendador RD Station
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Módulo de Interface do Usuário**  
+Responsável pela apresentação, interação e lógica de cliente do Sistema de Recomendação.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📋 Visão Geral
 
-### `yarn start`
+O módulo **Frontend** foi construído com **React.js** e **Tailwind CSS**, priorizando:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Componentização clara  
+- Código limpo  
+- UX fluida  
+- Performance instantânea  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Ele consome a API simulada (JSON-Server) para buscar produtos e processa a lógica de recomendação localmente usando um algoritmo otimizado.
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🌟 Destaques de Implementação
 
-### `yarn build`
+### **Arquitetura Limpa**
+Separação nítida entre:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `components/`  
+- `hooks/`  
+- `services/`  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Design System Customizado**
+- **SelectableCard**: substitui checkboxes, aumentando área clicável e legibilidade.
+- **ProductModal**: modal acessível para detalhes dos produtos.
+- **Layout Responsivo**: grid mobile-first utilizando Tailwind.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Performance**
+Algoritmo de recomendação com:
 
-### `yarn eject`
+- Complexidade **O(N)**  
+- Uso de **Set** para lookups constantes **O(1)**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠️ Tecnologias & Bibliotecas
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Core:** React 18  
+- **Estilização:** Tailwind CSS v3  
+- **Testes:** Jest + React Testing Library  
+- **HTTP:** Fetch API nativa (via custom hooks)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🚀 Como Executar (Isoladamente)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Se você deseja rodar apenas o frontend:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### **1. Instalação**
+Dentro da pasta `frontend/`:
 
-### Code Splitting
+```bash
+yarn install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### **2. Scripts Disponíveis**
 
-### Analyzing the Bundle Size
+| Comando     | Descrição                                                     |
+|-------------|----------------------------------------------------------------|
+| `yarn start` | Inicia o servidor de desenvolvimento em `http://localhost:3000`. |
+| `yarn test`  | Executa a suíte de testes unitários.                          |
+| `yarn build` | Gera a versão de produção (pasta `build/`).                   |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 📂 Estrutura de Diretórios
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+src/
+├── components/               # Componentes visuais reutilizáveis
+│   ├── Footer/               # Rodapé institucional
+│   ├── Form/                 # Formulário de preferências
+│   ├── Header/               # Barra de navegação global
+│   ├── RecommendationList/   # Cards e Modais de produtos
+│   └── shared/               # Componentes atômicos (ex: SelectableCard)
+├── hooks/                    # Custom Hooks (useProducts, useForm)
+├── mocks/                    # Dados estáticos para testes
+├── services/                 # Lógica de negócios pura (recommendation.service.js)
+└── App.js                    # Componente raiz e orquestrador de layout
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🧪 Testes
 
-### Deployment
+Os testes unitários focam exclusivamente na lógica crítica do recomendador.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Para executar:
 
-### `yarn build` fails to minify
+```bash
+yarn test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### **Cobertura Principal**
+
+- `recommendation.service.test.js`  
+  - Cenários: SingleProduct, MultipleProducts  
+  - Empates  
+  - Filtros vazios  
+  - Critério de “último produto válido”  
+
+---
+
+## 👤 Autor
+
+Desenvolvido por **Júlio César**.  
+📧 **juliocsbem@gmail.com**
