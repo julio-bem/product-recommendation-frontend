@@ -20,7 +20,13 @@ function Form({ onSubmit }) {
       formData,
       products
     );
-    if (onSubmit) onSubmit(dataRecommendations);
+    if (onSubmit) {
+      onSubmit(dataRecommendations);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (
