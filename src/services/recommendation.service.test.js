@@ -68,7 +68,10 @@ describe('recommendationService', () => {
 
   test('Retorna o último match em caso de empate para SingleProduct', () => {
     const formData = {
-      selectedPreferences: ['Automação de marketing', 'Integração com chatbots'],
+      selectedPreferences: [
+        'Automação de marketing',
+        'Integração com chatbots',
+      ],
       selectedRecommendationType: 'SingleProduct',
     };
 
@@ -79,5 +82,28 @@ describe('recommendationService', () => {
 
     expect(recommendations).toHaveLength(1);
     expect(recommendations[0].name).toBe('RD Conversas');
+  });
+
+  test('Desempate com pontuação complexa: Retorna o último produto quando dois produtos empatam com Score 2', () => {
+    const formData = {
+      selectedPreferences: [
+        'Personalização de funis de vendas',
+        'Segmentação avançada de leads', 
+      ],
+      selectedFeatures: [
+        'Gestão de leads e oportunidades', 
+        'Análise de retorno sobre investimento (ROI) de campanhas',
+      ],
+      selectedRecommendationType: 'SingleProduct',
+    };
+
+    const recommendations = recommendationService.getRecommendations(
+      formData,
+      mockProducts
+    );
+
+    expect(recommendations).toHaveLength(1);
+
+    expect(recommendations[0].name).toBe('RD Station Marketing');
   });
 });
